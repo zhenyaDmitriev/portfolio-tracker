@@ -1,15 +1,27 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "strict": true,          
+    "esModuleInterop": true, 
+    "skipLibCheck": true,    
+    "sourceMap": true,       
+    "types": ["node"],       
+    "moduleResolution": "node",
+    "resolveJsonModule": true  
   },
   "files": [
     "src/main.ts",
     "src/polyfills.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/**/*.ts"              
+  ],
+  "exclude": [
+    "node_modules",            
+    "**/*.spec.ts"             
   ]
 }
