@@ -1,1 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
+
+$fonts-path: "./assets/fonts";
+$font-geist-regular: "Geist-Regular";
+
+@font-face {
+  font-family: 'Geist-Regular';
+  src: url("#{$fonts-path}/geist/Geist-Regular-BF6569491e3eff1.woff2") format('woff2');
+  font-style: normal;
+  font-weight: normal;
+}
+
+:root {
+  --green-color: rgb(21, 188, 152);
+  --blue-color: rgb(100,116,139);
+  --light-gray-color: rgb(153, 153, 153);
+  --gray-color: rgb(128, 128, 128);
+  --dark-color: rgb(51, 51, 51);
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: $font-geist-regular, Arial, sans-serif;
+    line-height: 1.5;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+}
+
+
