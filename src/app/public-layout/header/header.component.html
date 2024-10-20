@@ -1,7 +1,7 @@
 <header class="welcome-header">
   <div class="container">
     <div class="logo">
-      <p>Logo</p>
+      <img src="" alt="">
     </div>
 
     <div class="menu">
@@ -10,7 +10,7 @@
       <p-sidebar #sidebar (onHide)="sidebar.destroyModal()" [(visible)]="sidebarVisible" position="right" [baseZIndex]="10000" class="sidebar">
         <h2 class="sidebar-title">Right Sidebar</h2>
         <nav class="navigation">
-          <p-button type="button" class="sign-in-button" (click)="navigateTo(AppRoutes.Home)">
+          <p-button type="button" class="sign-in-button" (click)="navigateTo(AppRoutes.SignIn)">
             <i class="pi pi-sign-in"></i>
             <p class="sign-in-text">Sign in</p>
           </p-button>

@@ -4,11 +4,11 @@ import {ButtonModule} from "primeng/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DropdownModule} from "primeng/dropdown";
 import {Router, RouterLinkWithHref} from "@angular/router";
-import {AppRoutes} from "../../../routes.enum";
 import {BrowserModule} from "@angular/platform-browser";
+import {AppRoutes} from "../../routes.enum";
 
 @Component({
-  selector: 'welcome-header',
+  selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   standalone: true,
