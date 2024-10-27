@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-signin',
@@ -11,14 +11,14 @@ export class SigninComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      email: [''],
-      password: ['']
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]]
     })
   }
 
   onSubmit() {
     if (this.form.valid) {
-
     }
   }
 }

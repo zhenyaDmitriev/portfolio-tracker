@@ -1,1 +1,21 @@
-<p>signup works!</p>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" formControlName="name">
+    <form-control-error [control]="signUpForm.get('name')"></form-control-error>
+  </div>
+
+  <div>
+    <label for="email">Email</label>
+    <input id="email" formControlName="email">
+    <form-control-error [control]="signUpForm.get('email')"></form-control-error>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" formControlName="password">
+    <form-control-error [control]="signUpForm.get('password')"></form-control-error>
+  </div>
+
+  <button type="submit">Sign Up</button>
+</form>
