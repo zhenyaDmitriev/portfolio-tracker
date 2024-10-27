@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -13,8 +13,8 @@ export class SignupComponent {
     this.signUpForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(60)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(126)]]
-    })
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(126)]],
+    });
   }
 
   onSubmit() {
