@@ -16,15 +16,14 @@ export class FormControlErrorComponent {
   private errorMessages = ERROR_MESSAGES;
 
   shouldShowErrors(): boolean {
-    return this.control
-      ? this.control.invalid && (this.control.dirty || this.control.touched)
-      : false;
+    return Boolean(this.control?.invalid && (this.control.dirty || this.control.touched));
   }
 
   getErrorMessages(): string[] {
-    if (!this.control || !this.control.errors) {
+    if (!this.control?.errors) {
       return [];
     }
+
     return Object.keys(this.control.errors).map(errorKey =>
       this.formatMessage(this.errorMessages[errorKey], this.control?.errors?.[errorKey])
     );

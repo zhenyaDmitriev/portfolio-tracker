@@ -1,21 +1,41 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div>
+<form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="signup-form">
+  <div class="form-group">
     <label for="name">Name</label>
-    <input id="name" formControlName="name">
-    <form-control-error [control]="signUpForm.get('name')"></form-control-error>
+    <input
+      autocomplete="name"
+      class="form-control"
+      formControlName="name"
+      id="name"
+      type="text">
+    <form-control-error [control]="signUpForm.get('name')!"></form-control-error>
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="email">Email</label>
-    <input id="email" formControlName="email">
-    <form-control-error [control]="signUpForm.get('email')"></form-control-error>
+    <input
+      autocomplete="email"
+      class="form-control"
+      formControlName="email"
+      id="email"
+      type="email">
+    <form-control-error [control]="signUpForm.get('email')!"></form-control-error>
   </div>
 
-  <div>
+  <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" id="password" formControlName="password">
-    <form-control-error [control]="signUpForm.get('password')"></form-control-error>
+    <input
+      autocomplete="new-password"
+      class="form-control"
+      formControlName="password"
+      id="password"
+      type="password">
+    <form-control-error [control]="signUpForm.get('password')!"></form-control-error>
   </div>
 
-  <button type="submit">Sign Up</button>
+  <button
+    [disabled]="signUpForm.invalid || signUpForm.pending"
+    class="submit-button"
+    type="submit">
+    Sign Up
+  </button>
 </form>
