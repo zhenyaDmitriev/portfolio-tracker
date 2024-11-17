@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PrivateLayoutComponent } from './private-layout.component';
-import { RouterOutlet } from '@angular/router';
 import { PrivateLayoutRoutingModule } from './private-layout-routing.module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 @NgModule({
-  declarations: [PrivateLayoutComponent, DashboardComponent],
-  imports: [CommonModule, PrivateLayoutRoutingModule, RouterOutlet],
+  declarations: [PrivateLayoutComponent, PortfolioComponent],
+  imports: [CommonModule, PrivateLayoutRoutingModule],
 })
 export class PrivateLayoutModule {}

@@ -1,3 +1,3 @@
 export enum PrivateRoutes {
-  Dashboard = '/dashboard',
+  Portfolio = '/portfolio',
 }

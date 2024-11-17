@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PrivateLayoutComponent } from './private-layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PrivateLayoutComponent,
-    children: [{ path: '', component: DashboardComponent }],
+    children: [
+      { path: 'portfolio', component: PortfolioComponent },
+      { path: '', redirectTo: 'portfolio', pathMatch: 'full' },
+    ],
   },
-  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

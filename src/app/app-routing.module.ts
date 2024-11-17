@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,9 +9,10 @@ const routes: Routes = [
       import('./public-layout/public-layout.module').then(m => m.PublicLayoutModule),
   },
   {
-    path: 'app',
+    path: 'profile',
     loadChildren: () =>
       import('./private-layout/private-layout.module').then(m => m.PrivateLayoutModule),
+    canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];

@@ -1,4 +1,4 @@
-export const AUTH_ROUTES = {
+export const AUTH_API = {
   register: '/auth/register',
   login: '/auth/login',
-} as const;
+};
