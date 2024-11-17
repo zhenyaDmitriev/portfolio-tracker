@@ -1,25 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DropdownModule } from 'primeng/dropdown';
-import { Router, RouterLinkWithHref } from '@angular/router';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutes } from '../../routes.enum';
+import { Router } from '@angular/router';
+import { PublicRoutes } from '../public-layout-routes.enum';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: true,
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    SidebarModule,
-    ButtonModule,
-    DropdownModule,
-    RouterLinkWithHref,
-  ],
   encapsulation: ViewEncapsulation.None,
 })
 export class HeaderComponent {
@@ -31,10 +17,11 @@ export class HeaderComponent {
     { label: '- FAQ', value: 'faq' },
     { label: '- Change Log', value: 'change-log' },
   ];
-  protected readonly AppRoutes = AppRoutes;
+  protected readonly PublicRoutes = PublicRoutes;
+
   constructor(private router: Router) {}
 
-  navigateTo(route: AppRoutes) {
+  navigateTo(route: PublicRoutes) {
     this.sidebarVisible = false;
     this.router.navigate([route]).then();
   }
