@@ -1,15 +1,20 @@
-export interface IAuthRequest {
+export interface SignUpRequest {
   name: string;
   email: string;
   password: string;
 }
 
-export interface IAuthResponse {
-  user: IUser;
+export interface SignInRequest {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponse {
+  user: User;
   token: string;
 }
 
-export interface IUser {
+export interface User {
   id: string;
   name: string;
   email: string;

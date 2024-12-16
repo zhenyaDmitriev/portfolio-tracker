@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/auth/auth.service';
+import { SignInFormValues } from '../interface';
 
 @Component({
   selector: 'app-signin',
@@ -7,19 +9,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
-  form: FormGroup;
+  signInForm: FormGroup<Record<keyof SignInFormValues, FormControl>>;
+  protected readonly authService = inject(AuthService);
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(128)]],
+    this.signInForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(254)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(126)]],
     });
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log('submit');
+    if (this.signInForm.valid) {
+      this.authService.login(this.signInForm.getRawValue());
+    } else {
+      Object.keys(this.signInForm.controls).forEach(key => {
+        const control = this.signInForm.get(key);
+        if (control?.invalid) {
+          control.markAsTouched();
+          control.updateValueAndValidity();
+        }
+      });
     }
   }
 }

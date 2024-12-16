@@ -1,17 +1,45 @@
-import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { HttpService } from '../http/http.service';
-import { IAuthRequest, IAuthResponse } from './interface';
 import { AUTH_API } from './auth.constants';
+import { AuthResponse, SignInRequest, SignUpRequest } from './interface';
+import { TokenService } from './token.service';
+import { Router } from '@angular/router';
+import { PrivateRoutes } from '../../private-layout/private-layout-routes.enum';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   protected readonly httpService = inject(HttpService);
+  protected readonly tokenService = inject(TokenService);
+  protected readonly router = inject(Router);
+  private readonly destroy$ = new Subject<void>();
 
-  register(data: IAuthRequest): Observable<HttpResponse<IAuthResponse>> {
-    return this.httpService.post<IAuthRequest, IAuthResponse>(AUTH_API.register, data);
+  register(userData: SignUpRequest): Subscription {
+    return this.httpService
+      .post<SignUpRequest, AuthResponse>(AUTH_API.register, userData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          const token = response.body?.token;
+          if (token) {
+            this.tokenService.setToken(token);
+            this.router.navigate([PrivateRoutes.Portfolio]).then();
+          }
+        },
+      });
+  }
+
+  login(data: SignInRequest): Subscription {
+    return this.httpService
+      .post<SignInRequest, AuthResponse>(AUTH_API.login, data)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
